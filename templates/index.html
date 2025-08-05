@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Court Case Fetcher</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='court-bg.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.85);
+            width: 400px;
+            margin: 100px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .captcha-image {
+            display: block;
+            margin: 10px auto;
+            width: 100%;
+            height: auto;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Fetch Court Case</h2>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST" action="/case-details">
+            <select name="court" required>
+                <option value="">-- Select Court --</option>
+                <option value="Delhi High Court">Delhi High Court</option>
+                <option value="Faridabad District Court">Faridabad District Court</option>
+            </select>
+
+            <select name="case_type" required>
+                <option value="">-- Select Case Type --</option>
+                <option value="CIVIL">Civil</option>
+                <option value="CRIMINAL">Criminal</option>
+                <option value="APPEAL">Appeal</option>
+            </select>
+
+            <input type="text" name="case_number" placeholder="Case Number" required>
+            <input type="text" name="year" placeholder="Filing Year (e.g., 2023)" required>
+
+            <img src="{{ url_for('static', filename='captcha.png') }}" alt="CAPTCHA" class="captcha-image">
+            <input type="text" name="captcha" placeholder="Enter CAPTCHA" required>
+
+            <button type="submit">Fetch Case Details</button>
+        
+<script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+        const court = document.querySelector('select[name="court"]').value;
+
+        // Open official court site in new tab after form submit
+        if (court === "Delhi High Court") {
+            window.open("https://delhihighcourt.nic.in/", "_blank");
+        } else if (court === "Faridabad District Court") {
+            window.open("https://faridabad.dcourts.gov.in//", "_blank");
+        }
+    });
+</script>
+          </form>
+    </div>
+</body>
+</html>

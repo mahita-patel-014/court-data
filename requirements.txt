@@ -1,0 +1,6 @@
+Flask==3.1.1
+requests
+beautifulsoup4
+lxml
+pytesseract
+opencv-python

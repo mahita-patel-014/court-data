@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Case Details</title>
+</head>
+<body>
+    <h2>📄 Case Details</h2>
+
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% else %}
+        <p><strong>Court:</strong> {{ court }}</p>
+        <p><strong>Case Type:</strong> {{ case_type }}</p>
+        <p><strong>Case Number:</strong> {{ case_number }}</p>
+        <p><strong>Year:</strong> {{ year }}</p>
+        <p><strong>Petitioner:</strong> {{ petitioner }}</p>
+        <p><strong>Respondent:</strong> {{ respondent }}</p>
+        <p><strong>Filing Date:</strong> {{ filing_date }}</p>
+        <p><strong>Next Hearing Date:</strong> {{ next_hearing_date }}</p>
+        <p><strong>Latest Order:</strong> <a href="{{ pdf_link }}" target="_blank">Download PDF</a></p>
+    {% endif %}
+</body>
+</html>
